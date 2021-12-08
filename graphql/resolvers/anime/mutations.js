@@ -1,7 +1,7 @@
 const animeMutations = {
-  createAnime: async () => {},
-  updateAnime: async () => {},
-  deleteAnime: async () => {},
+  createAnime: () => 'createAnime',
+  updateAnime: () => 'updateAnime',
+  deleteAnime: () => 'deleteAnime',
 };
 
 module.exports = { animeMutations };

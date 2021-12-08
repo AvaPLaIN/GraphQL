@@ -16,4 +16,4 @@ const animeType = gql`
   }
 `;
 
-module.exports = animeType;
+module.exports = { animeType };

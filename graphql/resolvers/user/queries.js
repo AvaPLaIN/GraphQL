@@ -1,6 +1,6 @@
 const userQueries = {
-  users: async (_, args) => {},
-  user: async (_, args) => {},
+  users: () => 'users',
+  user: () => 'user',
 };
 
-module.exports = userQueries;
+module.exports = { userQueries };

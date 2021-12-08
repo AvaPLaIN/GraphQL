@@ -1,6 +1,8 @@
+const Anime = require('../../../models/Anime');
+
 const animeQueries = {
-  animes: async () => {},
-  anime: async () => {},
+  animes: () => 'animes',
+  anime: () => 'anime',
 };
 
 module.exports = { animeQueries };

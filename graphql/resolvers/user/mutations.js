@@ -1,7 +1,7 @@
 const userMutations = {
-  createUser: async (_, args) => {},
-  updateUser: async (_, args) => {},
-  deleteUser: async (_, args) => {},
+  createUser: () => 'createUser',
+  updateUser: () => 'updateUser',
+  deleteUser: () => 'deleteUser',
 };
 
-module.exports = userMutations;
+module.exports = { userMutations };

@@ -15,4 +15,4 @@ const userType = gql`
   }
 `;
 
-module.exports = userType;
+module.exports = { userType };
