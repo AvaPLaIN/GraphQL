@@ -39,11 +39,6 @@ const AnimeSchema = new mongoose.Schema({
     required: [true, 'Provide status'],
     trim: true,
   },
-  version: {
-    type: String,
-    required: [true, 'Provide version'],
-    trim: true,
-  },
   released: {
     type: String,
     trim: true,

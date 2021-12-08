@@ -1,8 +1,8 @@
 //* IMPORTS
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcrypt');
+// const crypto = require('crypto');
+// const jwt = require('jsonwebtoken');
 
 //! SCHEMA
 const UserSchema = new mongoose.Schema({
@@ -53,57 +53,57 @@ const UserSchema = new mongoose.Schema({
 
 //! USER MIDDLEWARE
 //     ! BCRYPT PASSWORD
-UserSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) next();
+// UserSchema.pre('save', async function (next) {
+//   if (!this.isModified('password')) next();
 
-  const salt = await bcrypt.genSalt(10);
+//   const salt = await bcrypt.genSalt(10);
 
-  this.password = await bcrypt.hash(this.password, salt);
-  this.updatedAt = Date.now();
-  next();
-});
+//   this.password = await bcrypt.hash(this.password, salt);
+//   this.updatedAt = Date.now();
+//   next();
+// });
 
-//     ! COMPARE PASSWORD
-UserSchema.methods.comparePasswords = async function (password) {
-  return await bcrypt.compare(password, this.password);
-};
+// //     ! COMPARE PASSWORD
+// UserSchema.methods.comparePasswords = async function (password) {
+//   return await bcrypt.compare(password, this.password);
+// };
 
-//     ! GENERATE JWT TOKEN
-UserSchema.methods.getSignedJwtAccessToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_ACCESS_TOKEN_SECRET, {
-    expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRE,
-  });
-};
+// //     ! GENERATE JWT TOKEN
+// UserSchema.methods.getSignedJwtAccessToken = function () {
+//   return jwt.sign({ id: this._id }, process.env.JWT_ACCESS_TOKEN_SECRET, {
+//     expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRE,
+//   });
+// };
 
-UserSchema.methods.getSignedJwtRefreshToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_TOKEN_SECRET, {
-    expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRE,
-  });
-};
+// UserSchema.methods.getSignedJwtRefreshToken = function () {
+//   return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_TOKEN_SECRET, {
+//     expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRE,
+//   });
+// };
 
-UserSchema.methods.getResetPasswordToken = function () {
-  const resetToken = crypto.randomBytes(20).toString('hex');
+// UserSchema.methods.getResetPasswordToken = function () {
+//   const resetToken = crypto.randomBytes(20).toString('hex');
 
-  this.resetPasswordToken = crypto
-    .createHash('sha256')
-    .update(resetToken)
-    .digest('hex');
+//   this.resetPasswordToken = crypto
+//     .createHash('sha256')
+//     .update(resetToken)
+//     .digest('hex');
 
-  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
+//   this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
 
-  return resetToken;
-};
+//   return resetToken;
+// };
 
-UserSchema.methods.getValidateToken = function () {
-  const verifyToken = crypto.randomBytes(20).toString('hex');
+// UserSchema.methods.getValidateToken = function () {
+//   const verifyToken = crypto.randomBytes(20).toString('hex');
 
-  this.verifiedToken = crypto
-    .createHash('sha256')
-    .update(verifyToken)
-    .digest('hex');
+//   this.verifiedToken = crypto
+//     .createHash('sha256')
+//     .update(verifyToken)
+//     .digest('hex');
 
-  return verifyToken;
-};
+//   return verifyToken;
+// };
 
 const User = mongoose.model('User', UserSchema);
 

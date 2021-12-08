@@ -1,27 +1,63 @@
+//* IMPORTS
+//     * CONFIG
 require('dotenv').config({ path: './config.env' });
 const connectDB = require('./config/database');
-const { ApolloServer } = require('apollo-server');
-const gql = require('graphql-tag');
+
+//     * SERVER
+const server = require('./graphql/index');
+// const { ApolloServer } = require('apollo-server');
+
+//     * GRAPHQL
+// const gql = require('graphql-tag');
+
+//     * MODELS
+const Anime = require('./models/Anime');
+const User = require('./models/User');
+
+//     * MIDDLEWARE
+
+//     * LIBRARIES
 
 connectDB();
 const PORT = process.env.PORT || 8800;
 
-const typeDefs = gql`
-  type Query {
-    sayHi: String!
-  }
-`;
+//! GraphQL TYPE
+// const typeDefs = gql`
+//   type Anime {
+//     _id: ID!
+//     title: String!
+//     description: String!
+//     banner: String!
+//     thumnail: String!
+//     logo: String!
+//     trailer: String!
+//     genres: [String]!
+//     status: String!
+//     released: String!
+//     episodes: [String]!
+//   }
+//   type Query {
+//     getAnimes: [Anime]
+//   }
+// `;
 
-const resolvers = {
-  Query: {
-    sayHi: () => 'hello world',
-  },
-};
+// const resolvers = {
+//   Query: {
+//     getAnimes: async () => {
+//       try {
+//         const animes = await Anime.find({}, null, { limit: 50 });
+//         return animes;
+//       } catch (error) {
+//         throw new Error(error);
+//       }
+//     },
+//   },
+// };
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
+// const server = new ApolloServer({
+//   typeDefs,
+//   resolvers,
+// });
 
 server
   .listen({ port: PORT })
