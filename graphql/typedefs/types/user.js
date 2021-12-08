@@ -6,13 +6,13 @@ const userType = gql`
     username: String!
     email: String!
     password: String!
-    createdAt: Date!
-    updatedAt: Date!
+    createdAt: String!
+    updatedAt: String!
     resetPasswordToken: String!
-    resetPasswordExpire: Date!
+    resetPasswordExpire: String!
     verified: Boolean!
     verifiedToken: String!
   }
 `;
 
-module.exports = { userType };
+module.exports = userType;
