@@ -1,6 +1,8 @@
 const userQueries = {
-  users: () => 'users',
-  user: () => 'user',
+  Query: {
+    users: () => 'users',
+    user: () => 'user',
+  },
 };
 
 module.exports = { userQueries };

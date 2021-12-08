@@ -1,5 +1,7 @@
 const { animeQueries } = require('./queries');
 const { animeMutations } = require('./mutations');
 
-// module.exports = { animeQueries, animeMutations };
-module.exports = { animeQueries };
+const animeResolvers = [animeQueries, animeMutations];
+console.log('graphql/resolvers/anime/index.js-resolvers:', animeResolvers);
+
+module.exports = { animeResolvers };

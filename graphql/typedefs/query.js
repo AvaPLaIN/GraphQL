@@ -8,6 +8,16 @@ const query = gql`
     users: [User]!
     user(id: ID!): User!
   }
+
+  type Mutation {
+    createAnime: String!
+    updateAnime: String!
+    deleteAnime: String!
+
+    createUser: String!
+    updateUser: String!
+    deleteUser: String!
+  }
 `;
 
 module.exports = { query };
