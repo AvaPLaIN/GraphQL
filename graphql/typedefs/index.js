@@ -3,6 +3,4 @@ const { types } = require('./types/index');
 
 const typeDefs = [query, types];
 
-module.exports = {
-  typeDefs,
-};
+module.exports = { typeDefs };
