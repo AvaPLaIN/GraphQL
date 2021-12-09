@@ -1,15 +1,14 @@
-const Anime = require('../../../models/Anime');
+//* IMPORTS
+//     * CONTROLLERS
+const { animes } = require('../../../controllers/anime');
+
+//     * MIDDLEWARE
+const { authMiddleware } = require('../../../middleware/authentication');
 
 const animeQueries = {
   Query: {
-    animes: async () => {
-      try {
-        const animes = await Anime.find({}, null, { limit: 50 });
-        return animes;
-      } catch (error) {
-        throw new Error(error);
-      }
-    },
+    animes: async (parent, args, context, info) =>
+      (await authMiddleware(context)) ? await animes(context) : [],
     anime: () => 'anime',
   },
 };
