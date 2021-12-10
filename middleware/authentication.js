@@ -2,22 +2,22 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { AuthenticationError } = require('apollo-server');
 
-const authMiddleware = async (context) => {
+const authMiddleware = async (context, callback) => {
   let token;
 
   if (context.authScope && context.authScope.startsWith('Bearer'))
     token = context.authScope.split(' ')[1];
-  if (!token) return false;
+  if (!token) throw new AuthenticationError('Provide Token');
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET);
     const user = await User.findById(decoded.id);
-    if (!user) return false;
+    if (!user) throw new AuthenticationError('Not authenticated');
     context.authScope.user = user;
 
-    return true;
+    return callback(context);
   } catch (error) {
-    return false;
+    throw new AuthenticationError('Not authenticated');
   }
 };
 
