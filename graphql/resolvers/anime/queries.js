@@ -7,7 +7,7 @@ const { authMiddleware } = require('../../../middleware/authentication');
 
 const animeQueries = {
   Query: {
-    animes: async (_, __, context) => await authMiddleware(context, animes),
+    animes: async (_, args, context) => await animes(args, context), //await authMiddleware(context, animes)
 
     anime: async (_, args, context) => await anime(args, context),
   },

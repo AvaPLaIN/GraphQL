@@ -1,8 +1,13 @@
 const Anime = require('../models/Anime');
 
-const animes = async (context) => {
+const PAGINATION_ITEMS = 10;
+
+const animes = async ({ page }, context) => {
   try {
-    const animes = await Anime.find({}, null, { limit: 50 });
+    const animes = await Anime.find({}, null, {
+      limit: PAGINATION_ITEMS,
+      skip: page * PAGINATION_ITEMS,
+    });
     return animes;
   } catch (error) {
     return new Error(error);

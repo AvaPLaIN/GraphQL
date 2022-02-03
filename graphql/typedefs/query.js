@@ -2,7 +2,7 @@ const { gql } = require('apollo-server');
 
 const query = gql`
   type Query {
-    animes: [Anime]!
+    animes(page: Int!): [Anime]!
     anime(title: String!): [Anime]!
 
     users: [User]!
