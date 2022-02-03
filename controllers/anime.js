@@ -1,10 +1,15 @@
 const Anime = require('../models/Anime');
 
-const PAGINATION_ITEMS = 50;
+const PAGINATION_ITEMS = 10;
 
-const animes = async ({ page }, context) => {
+const animes = async ({ page, genres, status, released }, context) => {
+  const filterOptions = {};
+  if (genres) filterOptions.genres = { $all: genres };
+  if (status) filterOptions.status = status;
+  if (released) filterOptions.released = released;
+
   try {
-    const animes = await Anime.find({}, null, {
+    const animes = await Anime.find(filterOptions, null, {
       limit: PAGINATION_ITEMS,
       skip: page * PAGINATION_ITEMS,
     });
