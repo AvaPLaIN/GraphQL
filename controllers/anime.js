@@ -1,6 +1,6 @@
 const Anime = require('../models/Anime');
 
-const PAGINATION_ITEMS = 10;
+const PAGINATION_ITEMS = 50;
 
 const animes = async ({ page }, context) => {
   try {
