@@ -1,6 +1,6 @@
-const Anime = require('../models/Anime');
+const Anime = require("../models/Anime");
 
-const PAGINATION_ITEMS = 10;
+const PAGINATION_ITEMS = 50;
 
 const animes = async ({ page, genres, status, released }, context) => {
   const filterOptions = {};
@@ -22,7 +22,7 @@ const animes = async ({ page, genres, status, released }, context) => {
 const anime = async ({ title }, context) => {
   try {
     const anime = await Anime.find({
-      title: { $regex: new RegExp(`.*${title}.*`), $options: 'i' },
+      title: { $regex: new RegExp(`.*${title}.*`), $options: "i" },
     });
     return anime;
   } catch (error) {

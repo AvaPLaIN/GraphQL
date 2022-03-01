@@ -1,9 +1,12 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
 const animeType = gql`
   type Anime {
     _id: ID!
-    title: String!
+    titleEng: String!
+    titleJap: String!
+    groupName: String!
+    type: String!
     description: String!
     banner: String!
     thumnail: String!
@@ -13,6 +16,7 @@ const animeType = gql`
     status: String!
     released: String!
     episodes: [String]!
+    episodesCount: Int!
   }
 `;
 

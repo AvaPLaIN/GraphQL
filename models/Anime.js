@@ -1,11 +1,25 @@
 //* IMPORTS
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 //! SCHEMA
 const AnimeSchema = new mongoose.Schema({
-  title: {
+  titleEng: {
     type: String,
-    required: [true, 'Provide title'],
+    required: [true, "Provide english title"],
+    trim: true,
+  },
+  titleJap: {
+    type: String,
+    required: [true, "Provide japanese title"],
+    trim: true,
+  },
+  groupName: {
+    type: String,
+    required: [true, "Provide group name"],
+    trim: true,
+  },
+  type: {
+    type: String,
     trim: true,
   },
   description: {
@@ -14,12 +28,10 @@ const AnimeSchema = new mongoose.Schema({
   },
   banner: {
     type: String,
-    required: [true, 'Provide banner'],
     trim: true,
   },
   thumnail: {
     type: String,
-    required: [true, 'Provide thumnail'],
     trim: true,
   },
   logo: {
@@ -32,19 +44,20 @@ const AnimeSchema = new mongoose.Schema({
   },
   genres: {
     type: [String],
-    trim: true,
   },
   status: {
-    type: String,
-    required: [true, 'Provide status'],
-    trim: true,
-  },
-  released: {
     type: String,
     trim: true,
   },
   episodes: {
     type: [String],
+  },
+  episodesCount: {
+    type: Number,
+    trim: true,
+  },
+  released: {
+    type: String,
     trim: true,
   },
   createdAt: {
@@ -58,6 +71,6 @@ const AnimeSchema = new mongoose.Schema({
   },
 });
 
-const Anime = mongoose.model('Anime', AnimeSchema);
+const Anime = mongoose.model("Anime", AnimeSchema);
 
 module.exports = Anime;
