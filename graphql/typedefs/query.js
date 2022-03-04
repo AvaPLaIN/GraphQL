@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
 const query = gql`
   type Query {
@@ -7,6 +7,7 @@ const query = gql`
       genres: [String]
       status: String
       released: String
+      type: String
     ): [Anime]!
     anime(title: String!): [Anime]!
 
